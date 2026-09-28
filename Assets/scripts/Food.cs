@@ -4,20 +4,10 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Food", menuName = "Scriptable Objects/Food")]
-public class Food : ScriptableObject, IButton
+public class Food : ScriptableObject
 {
     public string foodName;
     public Sprite uneatenSprite;
     public Sprite eatenSprite;
-
-    private bool eaten = false;
     
-    public void OnPress()
-    {
-        if (!eaten)
-        {
-            Debug.Log("Eated");
-            eaten = true;
-        }
-    }
 }

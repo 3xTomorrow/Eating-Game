@@ -1,9 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FoodSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject foodPrefab;
-    [SerializeField] private Food[] foods;
 
     private void Start()
     {
@@ -12,12 +12,14 @@ public class FoodSpawner : MonoBehaviour
 
     private void RedButtonOnOnRedButtonPress()
     {
-        print("button pressed");
-        
-        var foodSo = Instantiate(foodPrefab, transform.position, transform.rotation);
-        if (foodSo != null && foodSo.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+        if (!GenericFood.hasFood)
         {
-            spriteRenderer.sprite = foods[0].uneatenSprite;
+            Instantiate(foodPrefab, transform.position, transform.rotation);
         }
+    }
+
+    private void OnDestroy()
+    {
+        RedButton.OnRedButtonPress -= RedButtonOnOnRedButtonPress;
     }
 }
