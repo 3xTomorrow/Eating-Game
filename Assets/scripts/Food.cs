@@ -9,13 +9,15 @@ public class Food : ScriptableObject, IButton
     public string foodName;
     public Sprite uneatenSprite;
     public Sprite eatenSprite;
-    public GameObject prefab;
 
     private bool eaten = false;
     
     public void OnPress()
     {
-        if(!eaten)
+        if (!eaten)
+        {
             Debug.Log("Eated");
+            eaten = true;
+        }
     }
 }
