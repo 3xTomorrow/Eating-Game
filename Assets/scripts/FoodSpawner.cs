@@ -12,7 +12,7 @@ public class FoodSpawner : MonoBehaviour
 
     private void RedButtonOnOnRedButtonPress()
     {
-        if (!GenericFood.hasFood)
+        if (!GenericFood.HasFood)
         {
             Instantiate(foodPrefab, transform.position, transform.rotation);
         }
