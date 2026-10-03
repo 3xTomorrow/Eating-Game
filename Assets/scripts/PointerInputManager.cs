@@ -25,9 +25,9 @@ public class PointerInputManager : MonoBehaviour
             Collider2D ray = Physics2D.OverlapPoint(mousePos);
             if (ray is not null && ray.CompareTag(_BUTTON_TAG))
             {
-                ray.GetComponent<IButton>().OnPress();
+                ray.GetComponent<IPressable>().OnPress();
                 effectsManager.ClickEffect(mousePos);
-                if (ray.TryGetComponent<IPressable>(out IPressable pressable))
+                if (ray.TryGetComponent<Button>(out Button pressable))
                 {
                     pressable.PressedSprite();
                 }
@@ -37,7 +37,7 @@ public class PointerInputManager : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             Collider2D ray = Physics2D.OverlapPoint(mousePos);
-            if (ray is not null && ray.TryGetComponent<IPressable>(out IPressable pressable))
+            if (ray is not null && ray.TryGetComponent<Button>(out Button pressable))
             {
                 pressable.UnpressedSprite();
             }

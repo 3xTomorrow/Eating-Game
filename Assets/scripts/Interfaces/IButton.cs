@@ -2,7 +2,7 @@ using System.Threading;
 using UnityEngine;
 using System;
 
-public interface IButton
+public interface IPressable
 {
     public void OnPress();
 }

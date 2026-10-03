@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class GenericFood : MonoBehaviour, IButton
+public class GenericFood : MonoBehaviour, IPressable
 {
     [SerializeField] private List<Food> foods;
     [SerializeField] private AudioClip eatenSound;
