@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Interfaces;
 
-public class GenericFood : MonoBehaviour, IPressable
+public class GenericFood : MonoBehaviour, IPressable, IDraggable
 {
     [SerializeField] private List<Food> foods;
     [SerializeField] private AudioClip eatenSound;
@@ -33,6 +34,16 @@ public class GenericFood : MonoBehaviour, IPressable
             _eaten = true;
         }
     }
+    
+    /*public void dragged()
+    {
+        
+    }
+
+    public void unDragged()
+    {
+        
+    }*/
 
     public void OnDestroy()
     {

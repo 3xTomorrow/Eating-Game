@@ -1,4 +1,5 @@
 using System;
+using Interfaces;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,13 +24,16 @@ public class PointerInputManager : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Collider2D ray = Physics2D.OverlapPoint(mousePos);
-            if (ray is not null && ray.CompareTag(_BUTTON_TAG))
+            if (ray is not null)
             {
-                ray.GetComponent<IPressable>().OnPress();
-                effectsManager.ClickEffect(mousePos);
-                if (ray.TryGetComponent<Button>(out Button pressable))
+                if (ray.CompareTag(_BUTTON_TAG))
                 {
-                    pressable.PressedSprite();
+                    ray.GetComponent<IPressable>().OnPress();
+                    effectsManager.ClickEffect(mousePos);
+                    if (ray.TryGetComponent<Button>(out Button pressable))
+                    {
+                        pressable.PressedSprite();
+                    }
                 }
             }
         }
@@ -37,10 +41,14 @@ public class PointerInputManager : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             Collider2D ray = Physics2D.OverlapPoint(mousePos);
-            if (ray is not null && ray.TryGetComponent<Button>(out Button pressable))
+            if (ray is not null)
             {
-                pressable.UnpressedSprite();
+                if(ray.TryGetComponent<Button>(out Button pressable))
+                {
+                    pressable.UnpressedSprite();
+                }
             }
+            
         }
     }
 }  
