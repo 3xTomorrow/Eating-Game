@@ -38,6 +38,18 @@ public class PointerInputManager : MonoBehaviour
             }
         }
 
+        if (Mouse.current.leftButton.isPressed)
+        {
+            Collider2D ray = Physics2D.OverlapPoint(mousePos);
+            if (ray is not null)
+            {
+                if (ray.TryGetComponent<IDraggable>(out IDraggable draggable))
+                {
+                    draggable.Dragged(mousePos);
+                }
+            }
+        }
+
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             Collider2D ray = Physics2D.OverlapPoint(mousePos);

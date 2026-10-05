@@ -10,6 +10,7 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
     
     private SpriteRenderer _spriteRenderer;
     private AudioSource _audioSource;
+    private Rigidbody2D _rigidbody2D;
     
     public static bool HasFood = false;
     private bool _eaten = false;
@@ -18,10 +19,10 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _audioSource = GetComponent<AudioSource>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         
         HasFood = true;
         _spriteRenderer.sprite = foods[0].uneatenSprite;
-        
     }
 
     public void OnPress()
@@ -35,11 +36,13 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         }
     }
     
-    /*public void dragged()
+    public void Dragged(Vector2 position)
     {
-        
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        transform.localPosition = position;
     }
 
+    /*
     public void unDragged()
     {
         
