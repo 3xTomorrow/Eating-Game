@@ -19,19 +19,20 @@ public abstract class Button : MonoBehaviour, IPressable
         _buttonClickSound = GetComponent<AudioSource>();
     }
 
-    public void PressedSprite()
+    public void OnPress()
     {
         _spriteRenderer.sprite = pressedSprite;
         _buttonClickSound.clip = buttonPressSound;
         _buttonClickSound.Play();
     }
     
-    public void UnpressedSprite()
+    public void OnRelease()
     {
         _spriteRenderer.sprite = unpressedSprite;
         _buttonClickSound.clip = buttonReleaseSound;
         _buttonClickSound.Play();
     }
 
-    public abstract void OnPress();
+    //public abstract void OnPress();
+    //public abstract void OnRelease();
 }

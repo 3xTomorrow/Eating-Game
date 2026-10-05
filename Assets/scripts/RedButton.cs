@@ -11,8 +11,14 @@ public class RedButton : Button, IPressable
         base.Awake();
     }
     
-    public override void OnPress()
+    public new void OnPress()
     {
+        base.OnPress();
         OnRedButtonPress?.Invoke();
+    }
+
+    public new void OnRelease()
+    {
+        base.OnRelease();
     }
 }

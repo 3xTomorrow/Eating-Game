@@ -7,6 +7,8 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
 {
     [SerializeField] private List<Food> foods;
     [SerializeField] private AudioClip eatenSound;
+
+    [SerializeField, Min(0)] private float dragSpeed = 5f;
     
     private SpriteRenderer _spriteRenderer;
     private AudioSource _audioSource;
@@ -32,21 +34,26 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
             _audioSource.clip = eatenSound;
             _audioSource.Play();
             _spriteRenderer.sprite = foods[0].eatenSprite;
+        }
+    }
+
+    public void OnRelease()
+    {
+        if (HasFood)
+        {
             _eaten = true;
         }
     }
     
     public void Dragged(Vector2 position)
     {
-        _rigidbody2D.linearVelocity = Vector2.zero;
-        transform.localPosition = position;
-    }
-
-    /*
-    public void unDragged()
-    {
+        if (_eaten)
+        {
+            _rigidbody2D.linearVelocity = Vector2.zero;
+            transform.localPosition = new Vector2(Mathf.Lerp(transform.localPosition.x, position.x, Time.deltaTime * dragSpeed), Mathf.Lerp(transform.localPosition.y, position.y, Time.deltaTime * dragSpeed));    
+        }
         
-    }*/
+    }
 
     public void OnDestroy()
     {

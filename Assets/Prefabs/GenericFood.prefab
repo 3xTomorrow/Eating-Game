@@ -184,6 +184,7 @@ MonoBehaviour:
   foods:
   - {fileID: 11400000, guid: 6b71cda32c0d20e458259b11110c3071, type: 2}
   eatenSound: {fileID: 8300000, guid: 05431c3e919b40f44b724ed8f76cbca0, type: 3}
+  dragSpeed: 10
 --- !u!82 &2336662269301971519
 AudioSource:
   m_ObjectHideFlags: 0

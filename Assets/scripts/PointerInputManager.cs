@@ -10,6 +10,11 @@ public class PointerInputManager : MonoBehaviour
     
     private Camera _cam;
     private const String _BUTTON_TAG = "Button";
+
+    private IDraggable _draggable;
+
+    private bool _pressed = false;
+    private Collider2D _pressedRay;
     
     
     private void Start()
@@ -26,41 +31,38 @@ public class PointerInputManager : MonoBehaviour
             Collider2D ray = Physics2D.OverlapPoint(mousePos);
             if (ray is not null)
             {
-                if (ray.CompareTag(_BUTTON_TAG))
+                if (ray.TryGetComponent<IPressable>(out IPressable pressable))
                 {
-                    ray.GetComponent<IPressable>().OnPress();
+                    pressable.OnPress();
                     effectsManager.ClickEffect(mousePos);
-                    if (ray.TryGetComponent<Button>(out Button pressable))
-                    {
-                        pressable.PressedSprite();
-                    }
+                    _pressed = true;
+                    _pressedRay = ray;
+                }
+                if (ray.TryGetComponent<IDraggable>(out IDraggable draggable))
+                {
+                    _draggable = draggable;
                 }
             }
         }
 
-        if (Mouse.current.leftButton.isPressed)
+        if (Mouse.current.leftButton.isPressed && _draggable != null)
         {
-            Collider2D ray = Physics2D.OverlapPoint(mousePos);
-            if (ray is not null)
-            {
-                if (ray.TryGetComponent<IDraggable>(out IDraggable draggable))
-                {
-                    draggable.Dragged(mousePos);
-                }
-            }
+            _draggable.Dragged(mousePos);
         }
 
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            Collider2D ray = Physics2D.OverlapPoint(mousePos);
-            if (ray is not null)
+            _draggable = null;
+
+            if (_pressed)
             {
-                if(ray.TryGetComponent<Button>(out Button pressable))
+                if (_pressedRay.TryGetComponent<IPressable>(out IPressable pressable))
                 {
-                    pressable.UnpressedSprite();
+                    pressable.OnRelease();
+                    _pressed = false;
+                    _pressedRay = null;
                 }
             }
-            
         }
     }
 }  
