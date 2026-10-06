@@ -9,7 +9,6 @@ public class PointerInputManager : MonoBehaviour
     [SerializeField] private EffectsManager effectsManager;
     
     private Camera _cam;
-    private const String _BUTTON_TAG = "Button";
 
     private IDraggable _draggable;
 
