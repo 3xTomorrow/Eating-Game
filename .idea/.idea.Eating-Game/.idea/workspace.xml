@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ded15aab-1cc2-4cac-a646-b9df2324dd53" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Eating-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Eating-Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FoodDropper.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FoodDropper.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FullnessBar.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FullnessBar.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/scripts/GenericFood.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/GenericFood.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/scripts/HungerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/HungerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/scripts/TrashVacuum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/scripts/TrashVacuum.cs" afterDir="false" />

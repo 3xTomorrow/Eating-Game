@@ -31,7 +31,7 @@ public class TrashVacuum : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         if (go.transform.localPosition.y > 20f && go.TryGetComponent<GenericFood>(out GenericFood gf))
         {
-            hungerManager.IncreaseHunger(gf.GetCurrentHungerValue());
+            //hungerManager.IncreaseHunger(gf.GetCurrentHungerValue());
             Destroy(go);
         }
     }

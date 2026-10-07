@@ -47,6 +47,7 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
     {
         if (!_eaten)
         {
+            HungerManager.IncreaseHunger(_hungerValue);
             _audioSource.clip = eatenSound;
             _audioSource.Play();
             _spriteRenderer.sprite = _currentFood.eatenSprite;
