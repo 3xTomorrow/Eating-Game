@@ -15,3 +15,4 @@ MonoBehaviour:
   foodName: Burger
   uneatenSprite: {fileID: 21300000, guid: 1637d78d084ab064b949edad9955ba17, type: 3}
   eatenSprite: {fileID: 21300000, guid: 5b13f0ff0c26f9848ad6302133c8c680, type: 3}
+  hungerValue: 10

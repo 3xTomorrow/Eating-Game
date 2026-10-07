@@ -11,9 +11,12 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
 
     [SerializeField, Min(0)] private float dragSpeed = 5f;
     
+    [SerializeField] private HungerManager hungerManager;
+    
     private SpriteRenderer _spriteRenderer;
     private AudioSource _audioSource;
     private Rigidbody2D _rigidbody2D;
+    private HungerManager _hungerManager;
     
     public static bool HasFood;
     private bool _eaten;
@@ -30,6 +33,7 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _audioSource = GetComponent<AudioSource>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _hungerManager = hungerManager;
         
         HasFood = true;
         
@@ -69,6 +73,7 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
 
     public void OnDestroy()
     {
+        _hungerManager = null;
         _currentFood = null;
         HasFood = false;
         _eaten = false;

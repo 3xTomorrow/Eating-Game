@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: HotDog
   m_EditorClassIdentifier: Assembly-CSharp::Food
   foodName: Hot Dog
-  uneatenSprite: {fileID: 4798975650289153971, guid: 1215177f77f655e4a96c20d7285576d6, type: 3}
-  eatenSprite: {fileID: 8968380222231204850, guid: c639a777471228348aacaf08dcdf397e, type: 3}
+  uneatenSprite: {fileID: 21300000, guid: f6750d60f3e9f114aba3dcd32a6b382c, type: 3}
+  eatenSprite: {fileID: 21300000, guid: c98dda6b0ee77cd4eb6fc4e6ff9cd86a, type: 3}
+  hungerValue: 5

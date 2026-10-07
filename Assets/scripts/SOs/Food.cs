@@ -9,5 +9,5 @@ public class Food : ScriptableObject
     public string foodName;
     public Sprite uneatenSprite;
     public Sprite eatenSprite;
-    
+    public int hungerValue;
 }
