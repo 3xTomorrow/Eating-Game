@@ -72,11 +72,6 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         
     }
     
-    public int GetCurrentHungerValue()
-    {
-        return _hungerValue;
-    }
-    
     public void OnDestroy()
     {
         _hungerValue = 0;
