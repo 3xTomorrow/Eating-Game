@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Interfaces;
+using Random = System.Random;
 
 public class GenericFood : MonoBehaviour, IPressable, IDraggable
 {
@@ -14,8 +15,15 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
     private AudioSource _audioSource;
     private Rigidbody2D _rigidbody2D;
     
-    public static bool HasFood = false;
-    private bool _eaten = false;
+    public static bool HasFood;
+    private bool _eaten;
+    private Random _random;
+    private Food _currentFood;
+
+    private void Awake()
+    {
+        _random = new Random();
+    }
     
     private void OnEnable()
     {
@@ -24,7 +32,11 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         _rigidbody2D = GetComponent<Rigidbody2D>();
         
         HasFood = true;
-        _spriteRenderer.sprite = foods[0].uneatenSprite;
+        
+        int randomFoodIndex = _random.Next(0, 2);
+        _currentFood = foods[randomFoodIndex];
+        
+        _spriteRenderer.sprite = _currentFood.uneatenSprite;
     }
 
     public void OnPress()
@@ -33,7 +45,7 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         {
             _audioSource.clip = eatenSound;
             _audioSource.Play();
-            _spriteRenderer.sprite = foods[0].eatenSprite;
+            _spriteRenderer.sprite = _currentFood.eatenSprite;
         }
     }
 
@@ -57,6 +69,7 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
 
     public void OnDestroy()
     {
+        _currentFood = null;
         HasFood = false;
         _eaten = false;
     }

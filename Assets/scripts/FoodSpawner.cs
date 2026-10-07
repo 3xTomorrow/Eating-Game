@@ -14,7 +14,7 @@ public class FoodSpawner : MonoBehaviour
     {
         if (!GenericFood.HasFood)
         {
-            Instantiate(foodPrefab, transform.position + new Vector3(0,3,0), transform.rotation);
+            Instantiate(foodPrefab, transform.position + new Vector3(0,3,0), new  Quaternion(0,0,0,0));
         }
     }
 
