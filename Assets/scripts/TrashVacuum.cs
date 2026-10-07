@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TrashVacuum : MonoBehaviour
 {
+    [SerializeField] private HungerManager hungerManager;
+    
     private GameObject _gameObject;
     
     private void OnTriggerStay2D(Collider2D other)
@@ -27,8 +29,9 @@ public class TrashVacuum : MonoBehaviour
     IEnumerator Wait(GameObject go)
     {
         yield return new WaitForSeconds(.5f);
-        if (go.transform.localPosition.y > 20f)
+        if (go.transform.localPosition.y > 20f && go.TryGetComponent<GenericFood>(out GenericFood gf))
         {
+            hungerManager.IncreaseHunger(gf.GetCurrentHungerValue());
             Destroy(go);
         }
     }

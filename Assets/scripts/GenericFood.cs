@@ -11,17 +11,16 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
 
     [SerializeField, Min(0)] private float dragSpeed = 5f;
     
-    [SerializeField] private HungerManager hungerManager;
-    
     private SpriteRenderer _spriteRenderer;
     private AudioSource _audioSource;
     private Rigidbody2D _rigidbody2D;
     private HungerManager _hungerManager;
-    
-    public static bool HasFood;
-    private bool _eaten;
     private Random _random;
     private Food _currentFood;
+
+    public static bool HasFood;
+    private bool _eaten;
+    private int _hungerValue;
 
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _audioSource = GetComponent<AudioSource>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _hungerManager = hungerManager;
         
         HasFood = true;
         
@@ -41,6 +39,8 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         _currentFood = foods[randomFoodIndex];
         
         _spriteRenderer.sprite = _currentFood.uneatenSprite;
+        
+        _hungerValue = _currentFood.hungerValue;
     }
 
     public void OnPress()
@@ -70,10 +70,15 @@ public class GenericFood : MonoBehaviour, IPressable, IDraggable
         }
         
     }
-
+    
+    public int GetCurrentHungerValue()
+    {
+        return _hungerValue;
+    }
+    
     public void OnDestroy()
     {
-        _hungerManager = null;
+        _hungerValue = 0;
         _currentFood = null;
         HasFood = false;
         _eaten = false;

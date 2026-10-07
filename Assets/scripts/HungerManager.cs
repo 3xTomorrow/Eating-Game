@@ -5,9 +5,12 @@ public class HungerManager : MonoBehaviour
 {
     [SerializeField] private Slider slider;
 
+    private int _hungerAmount;
+    
     public void IncreaseHunger(int amount)
     {
-        slider.value += amount;
+        _hungerAmount += amount;
+        slider.value = _hungerAmount;
     }
 
     private void OnDestroy()
