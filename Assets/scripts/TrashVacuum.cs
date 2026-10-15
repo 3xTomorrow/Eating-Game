@@ -45,7 +45,7 @@ public class TrashVacuum : MonoBehaviour
     IEnumerator Wait(GameObject go)
     {
         yield return new WaitForSeconds(.25f);
-        if (go.transform.localPosition.y > 10f && go.TryGetComponent<GenericFood>(out GenericFood gf))
+        if (Mathf.Abs(go.transform.localPosition.y) > 10f && go.TryGetComponent<GenericFood>(out GenericFood gf))
         {
             int randomIndex = _random.Next(0, popSounds.Count);
             _audioSource.PlayOneShot(popSounds[randomIndex]);
