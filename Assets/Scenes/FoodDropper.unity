@@ -704,7 +704,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.18430421, y: 0.030539356}
+    - - {x: -0.19822888, y: 0.019399626}
       - {x: -0.20919064, y: 0.008270969}
       - {x: -0.21388426, y: -0.036705013}
       - {x: -0.12589714, y: -0.05865271}
@@ -719,7 +719,7 @@ PolygonCollider2D:
       - {x: 0.10067543, y: -0.060103312}
       - {x: 0.2046508, y: -0.03454055}
       - {x: 0.20461673, y: 0.0059230477}
-      - {x: 0.18715517, y: 0.032580975}
+      - {x: 0.20015152, y: 0.019118533}
   m_UseDelaunayMesh: 1
 --- !u!212 &568872341
 SpriteRenderer:
@@ -1192,8 +1192,8 @@ Transform:
   m_GameObject: {fileID: 1109690458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001452392, y: 0.013999987, z: 0}
-  m_LocalScale: {x: 0.34997505, y: 0.35002372, z: 1}
+  m_LocalPosition: {x: -0.001452392, y: 0.1989, z: 0}
+  m_LocalScale: {x: 0.34997505, y: 0.71971875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 513113092}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e26b12344a8fdd2439361d014323be33, type: 3}
   - {fileID: 8300000, guid: 09f8dc09efedc414784e7ba556669245, type: 3}
   - {fileID: 8300000, guid: 1340ba1fa579f674ab71453241682a8a, type: 3}
-  vacuumSound: {fileID: 8300000, guid: 9d0113dd16699ce4ea3c58dd422fdc1f, type: 3}
+  suction: {fileID: 8300000, guid: 3014007e45369cc4c9edcaf705b4e9a6, type: 3}
 --- !u!61 &1109690463
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1334,7 +1334,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

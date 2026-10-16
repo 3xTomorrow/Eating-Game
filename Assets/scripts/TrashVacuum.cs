@@ -9,18 +9,32 @@ public class TrashVacuum : MonoBehaviour
     [Header("Audio Clips")] 
     [SerializeField] private List<AudioClip> popSounds;
     [FormerlySerializedAs("suctionContinue")] [SerializeField] private AudioClip suction;
-    
+
+    public static event EventHandler OnLastFoodDestroyed;
     
     private AudioSource _audioSource;
     private GameObject _gameObject;
     private System.Random _random;
 
+    private bool _isFull;
+    
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
         _random = new System.Random();
     }
-    
+
+    private void Start()
+    {
+        HungerManager.OnFullnessReached += HungerManagerOnFullnessReached;
+    }
+
+    private void HungerManagerOnFullnessReached(object sender, EventArgs e)
+    {
+        _isFull = true;
+        HungerManager.OnFullnessReached -= HungerManagerOnFullnessReached;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         _audioSource.Stop(); //Stop any sounds if they were playing
@@ -45,6 +59,10 @@ public class TrashVacuum : MonoBehaviour
         _audioSource.clip = null;
         if (_gameObject != null)
         {
+            if (_isFull)
+            {
+                OnLastFoodDestroyed?.Invoke(this, EventArgs.Empty);
+            }
             StartCoroutine(Wait(_gameObject));
         }
     }

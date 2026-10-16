@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HungerManager : MonoBehaviour
 {
-    [SerializeField] private PointerInputManager input;
+    public static event EventHandler OnFullnessReached;
     
     private static Slider _slider;
     private static float _hungerAmount;
@@ -19,9 +20,8 @@ public class HungerManager : MonoBehaviour
     {
         if (_hungerAmount >= _slider.maxValue && !_isFull)
         {
-            print("You are full!");
-            input.enabled = false;
             _isFull = true;
+            OnFullnessReached?.Invoke(this, EventArgs.Empty);
         }
     }
     
