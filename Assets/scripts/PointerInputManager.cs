@@ -55,11 +55,18 @@ public class PointerInputManager : MonoBehaviour
 
             if (_pressed)
             {
-                if (_pressedRay.TryGetComponent<IPressable>(out IPressable pressable))
+                try
                 {
-                    pressable.OnRelease();
-                    _pressed = false;
-                    _pressedRay = null;
+                    if (_pressedRay.TryGetComponent<IPressable>(out IPressable pressable))
+                    {
+                        pressable.OnRelease();
+                        _pressed = false;
+                        _pressedRay = null;
+                    }
+                }
+                catch (MissingReferenceException mre)
+                {
+                    print("Player most likely let go of object above vacuum. Message:\n" + mre.Message);
                 }
             }
         }

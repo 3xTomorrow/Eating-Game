@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TrashVacuum : MonoBehaviour
 {
     [Header("Audio Clips")] 
     [SerializeField] private List<AudioClip> popSounds;
-    [SerializeField] private AudioClip vacuumSound;
+    [FormerlySerializedAs("suctionContinue")] [SerializeField] private AudioClip suction;
+    
     
     private AudioSource _audioSource;
     private GameObject _gameObject;
@@ -21,7 +23,10 @@ public class TrashVacuum : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //play vacuum sound here
+        _audioSource.Stop(); //Stop any sounds if they were playing
+        _audioSource.clip = suction;
+        _audioSource.loop = true;
+        _audioSource.Play();
     }
     
     private void OnTriggerStay2D(Collider2D other)
@@ -35,7 +40,9 @@ public class TrashVacuum : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        //stop vacuum sound here
+        _audioSource.Stop();
+        _audioSource.loop = false;
+        _audioSource.clip = null;
         if (_gameObject != null)
         {
             StartCoroutine(Wait(_gameObject));
@@ -45,7 +52,7 @@ public class TrashVacuum : MonoBehaviour
     IEnumerator Wait(GameObject go)
     {
         yield return new WaitForSeconds(.25f);
-        if (Mathf.Abs(go.transform.localPosition.y) > 10f && go.TryGetComponent<GenericFood>(out GenericFood gf))
+        if (Mathf.Abs(go.transform.localPosition.y) > 5f && go.TryGetComponent<GenericFood>(out GenericFood gf))
         {
             int randomIndex = _random.Next(0, popSounds.Count);
             _audioSource.PlayOneShot(popSounds[randomIndex]);
